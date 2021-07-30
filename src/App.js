@@ -1,12 +1,26 @@
-import './App.css';
+import React, {useState} from 'react';
 
-function App() {
+const App = () => {
+
+  const [message, setMessage] = useState('')
+  const sendMessage = e => {
+    e.preventDefault();
+  }
 
   return (
     <div className="App">
-      <h1>Hey!</h1>
+      <h1>Chat App</h1>
+      <form onSubmit={sendMessage}>
+        <input
+          type="text"
+          name="message"
+          placeholder="Type message..."
+          value={message}
+          onChange={e => setMessage(e.target.value)}
+        />
+      </form>
     </div>
-  );
+  )
 }
 
 export default App;
