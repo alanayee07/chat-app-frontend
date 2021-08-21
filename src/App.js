@@ -1,38 +1,51 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import ChatRoom from './ChatRoom'
-import io from 'socket.io-client';
-// import Home from  './Home'
+// import io from 'socket.io-client';
+import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Home from  './Home'
 
 
-const socket = io('http://localhost:7000/');
+// const socket = io('http://localhost:7000/');
 
 const App = () => {
 
-  const [roomName, setRoomName] = useState([]);
+  // const [roomName, setRoomName] = useState('');
 
-  useEffect(() => {
-    if (roomName) {
-      socket.on('join', roomName => {
-        console.log('Joined ', roomName);
-      })
-    }
-  })
+  // useEffect(() => {
+  //   if (roomName) {
+  //     socket.on('join', roomName => {
+  //       console.log('Joined ', roomName);
+  //     })
+  //   }
+  // }, [roomName])
 
-  const joinRoom = e => {
-    e.preventDefault();
-    if (roomName !== "") {
-      setRoomName(roomName);
-      const roomObj = {
-        roomName,
-        userId: socket.id,
-      }
-      socket.emit("join", roomObj);
-      // socket.emit("join", roomName);
-      console.log('roomName is set to: ', roomName)
-    } else {
-      alert("Please enter roomname");
-    }
-  }
+  // const handleRoomNameChange = e => {
+  //   setRoomName(e.target.value);
+  // }
+
+  // const joinRoom = e => {
+  //   e.preventDefault();
+  //   const roomObj = {
+  //     roomId: roomName,
+  //     userId: socket.id,
+  //   }
+    // setRoomName(roomObj.roomId);
+    // socket.emit("join", roomObj);
+    // console.log('roomName is set to: ', roomName);
+
+
+    // if (roomName !== "") {
+    //   setRoomName(roomName);
+    //   const roomObj = {
+    //     roomId: roomName,
+    //     userId: socket.id,
+    //   }
+    //   socket.emit("join", roomObj);
+    //   // socket.emit("join", roomName);
+    //   console.log('roomName is set to: ', roomObj.roomId)
+    // } else {
+    //   alert("Please enter roomname");
+    // }
 
   // const [yourId, setYourId] = useState();
   // const [messages, setMessages] = useState([]);
@@ -64,44 +77,12 @@ const App = () => {
 
 
   return (
-    <div className="App">
-      <h1>Chattr App</h1>
-      <div className="roomName-container">
-        <input
-          type="text"
-          placeholder="Room"
-          value={roomName}
-          onChange={e => setRoomName(e.target.value)}
-        />
-      </div>
-      <div>
-        <button onClick={joinRoom}>Join Room</button>
-      </div>
-      {/* <Home socket={socket} /> */}
-      <ChatRoom roomName={roomName}/>
-      {/* <h1>Chat App</h1>
-      <Home/>
-      <form onSubmit={sendMessage}>
-        <input
-          type="text"
-          name="message"
-          placeholder="Type message..."
-          value={message}
-          onChange={e => setMessage(e.target.value)}
-          required
-        />
-        <button type="submit">Send</button>
-      </form>
-      <div className="messages-container">
-        <div className="messages-list">
-          {messages.map((msg, index) => {
-            return (
-              <h3 key={index}>{msg.message}</h3>
-            )
-          })}
-        </div>
-      </div> */}
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/:roomId" component={ChatRoom} />
+      </Switch>
+    </Router>
   )
 }
 
