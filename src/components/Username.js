@@ -1,13 +1,15 @@
 import React, {useState} from 'react'
 import JoinRoom from './JoinRoom'
 
-const Login = () => {
+import './css/Username.css'
+
+const Username = () => {
 
   const [username, setUsername] = useState('');
 
   return (
     <>
-    <div className="username-input">
+    <div className="username-container">
         <input
           type="text"
           placeholder="Enter username"
@@ -24,4 +26,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Username
