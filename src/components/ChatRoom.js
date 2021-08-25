@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react'
-import SocketIo from './socket.io.client/index.js';
+import SocketIo from '../socket.io.client/index.js';
+import JoinRoom from './JoinRoom';
+// import {createNewMessage} from './utilities';
 
 const ChatRoom = (props) => {
   const { roomId } = props.match.params;
@@ -15,6 +17,7 @@ const ChatRoom = (props) => {
 
   useEffect(() => {
     SocketIo.emit('message', {userId: SocketIo.id, room: roomId})
+    setMessages([]);
   }, [roomId]);
 
 
@@ -51,6 +54,9 @@ const ChatRoom = (props) => {
         />
         <button type="submit">Send</button>
       </form>
+      <div className="new-room">
+        <JoinRoom />
+      </div>
     </div>
   )
 }
