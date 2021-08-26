@@ -1,14 +1,17 @@
 import React from 'react'
 
-const InputField = ({value, name, placeholder, type, onChange}) => {
+import './css/Login.css'
+
+const InputField = ({className, propValue, onChange, placeholder}) => {
   return (
-    <div className="form-container">
+    <div className={className}>
       <input
-        type={type}
-        value={value}
-        name={name}
+        className="login-input"
+        type="text"
         placeholder={placeholder}
+        value={propValue}
         onChange={onChange}
+        required
       />
     </div>
   )

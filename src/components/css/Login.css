@@ -1,0 +1,11 @@
+.login-inner-container {
+  display: inline
+}
+
+.login-container, .username-container, .roomName-container {
+  display: flex
+}
+
+.login-container {
+  justify-content: center;
+}

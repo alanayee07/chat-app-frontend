@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 
-import './css/JoinRoom.css'
 
 const JoinRoom = () => {
 
@@ -16,7 +15,7 @@ const JoinRoom = () => {
           value={roomName}
           onChange={e => setRoomName(e.target.value)}
         />
-        <Link to={`/${roomName}`}>
+        <Link to={`/${roomName}`} className="joinRoom-button">
           Join room
         </Link>
       </div>
