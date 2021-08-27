@@ -19,11 +19,6 @@ const Login = () => {
             onChange={e => setUsername(e.target.value)}
             placeholder='Enter Username'
           />
-          <div className="username-button">
-            <button>
-              Set Username
-            </button>
-          </div>
         </div>
         <div className="roomName-container">
           <InputField
@@ -32,11 +27,9 @@ const Login = () => {
             onChange={e => setRoomName(e.target.value)}
             placeholder='Enter Room'
           />
-          <div className="joinRoom-button">
-            <Link to={`/${roomName}`} className="joinRoom-button">
-              Join room
-            </Link>
-          </div>
+          <Link to={`/${roomName}?username=${username}&roomName=${roomName}`} onClick={e => (!username || !roomName) ? e.preventDefault() : null}>
+            <button className="joinRoom-button">Sign In</button>
+          </Link>
         </div>
       </div>
     </div>
