@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 
 
-const JoinRoom = () => {
+const JoinRoom = ({username}) => {
 
   const [roomName, setRoomName] = useState('');
 
@@ -15,8 +15,11 @@ const JoinRoom = () => {
           value={roomName}
           onChange={e => setRoomName(e.target.value)}
         />
-        <Link to={`/${roomName}`} className="joinRoom-button">
+        {/* <Link to={`/${roomName}`} username={username}className="joinRoom-button">
           Join room
+        </Link> */}
+        <Link to={`/${roomName}?username=${username}&roomName=${roomName}`}>
+          <button className="joinRoom-button">Join Room</button>
         </Link>
       </div>
     </div>

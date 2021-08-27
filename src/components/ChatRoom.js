@@ -1,13 +1,29 @@
 import React, {useState, useEffect} from 'react'
 import SocketIo from '../socket.io.client/index.js';
 import JoinRoom from './JoinRoom';
+import queryString from 'query-string';
 // import {createNewMessage} from './utilities';
 
-const ChatRoom = (props) => {
-  const { roomId } = props.match.params;
+import './css/ChatRoom.css';
 
+
+const ChatRoom = ({location}) => {
+  const [username, setUsername] = useState('');
+  const [roomName, setRoomName] = useState('');
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
+
+
+  useEffect(() => {
+    const {username, roomName} = queryString.parse(location.search);
+
+    setRoomName(roomName);
+    setUsername(username);
+
+    SocketIo.emit('join', {username, roomName}, () => {
+
+    });
+  }, [location.search])
 
   useEffect(() => {
     SocketIo.on('message', msg => {
@@ -16,9 +32,9 @@ const ChatRoom = (props) => {
   }, [messages]);
 
   useEffect(() => {
-    SocketIo.emit('message', {userId: SocketIo.id, room: roomId})
+    SocketIo.emit('message', {userId: SocketIo.id, room: roomName, username: username})
     setMessages([]);
-  }, [roomId]);
+  }, [roomName, username]);
 
 
   const sendMessage = e => {
@@ -26,7 +42,8 @@ const ChatRoom = (props) => {
     const messageObj = {
       message,
       userId: SocketIo.id,
-      room: roomId,
+      username: username,
+      room: roomName,
     }
     SocketIo.emit('message', messageObj);
     setMessage('');
@@ -34,7 +51,8 @@ const ChatRoom = (props) => {
 
   return (
     <div className="chatRoom-container">
-      <h1>Room: {roomId}</h1>
+      <h1>Room: {roomName}</h1>
+      <h3>My username: {username}</h3>
       <div className="message-container">
         <div className="message-list">
           {messages.map((msg, index)=> {
@@ -55,7 +73,7 @@ const ChatRoom = (props) => {
         <button type="submit">Send</button>
       </form>
       <div className="new-room">
-        <JoinRoom />
+        <JoinRoom username={username} />
       </div>
     </div>
   )
