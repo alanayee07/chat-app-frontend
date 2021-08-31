@@ -1,7 +1,23 @@
+h1 {
+  color: white;
+}
+
 .chatRoom-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-color: black;
+}
+
+.message-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #2c2f33;
+  color: white;
+  border-radius: 8px;
+  height: 60%;
+  width: 35%;
 }

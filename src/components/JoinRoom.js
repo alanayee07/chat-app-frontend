@@ -15,9 +15,6 @@ const JoinRoom = ({username}) => {
           value={roomName}
           onChange={e => setRoomName(e.target.value)}
         />
-        {/* <Link to={`/${roomName}`} username={username}className="joinRoom-button">
-          Join room
-        </Link> */}
         <Link to={`/${roomName}?username=${username}&roomName=${roomName}`}>
           <button className="joinRoom-button">Join Room</button>
         </Link>

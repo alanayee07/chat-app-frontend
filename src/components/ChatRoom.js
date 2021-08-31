@@ -51,8 +51,7 @@ const ChatRoom = ({location}) => {
 
   return (
     <div className="chatRoom-container">
-      <h1>Room: {roomName}</h1>
-      <h3>My username: {username}</h3>
+      <h1 className="room-header">Room: {roomName}</h1>
       <div className="message-container">
         <div className="message-list">
           {messages.map((msg, index)=> {
@@ -62,16 +61,18 @@ const ChatRoom = ({location}) => {
           })}
         </div>
       </div>
-      <form onSubmit={sendMessage}>
-        <input
-          type="text"
-          placeholder="Type Message Here..."
-          value={message}
-          onChange={e => setMessage(e.target.value)}
-          required
-        />
-        <button type="submit">Send</button>
-      </form>
+      <div className="sendMessage-container">
+        <form onSubmit={sendMessage}>
+          <input
+            type="text"
+            placeholder="Type Message Here..."
+            value={message}
+            onChange={e => setMessage(e.target.value)}
+            required
+          />
+          <button type="submit">Send</button>
+        </form>
+      </div>
       <div className="new-room">
         <JoinRoom username={username} />
       </div>
