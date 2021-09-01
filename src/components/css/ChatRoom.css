@@ -19,5 +19,12 @@ h1 {
   color: white;
   border-radius: 8px;
   height: 60%;
-  width: 35%;
+  width: 80%;
+  padding-left: 15px;
+}
+
+.message-list {
+  margin-left: 30%;
+  margin-right: 30%;
+  height: 100%;
 }
