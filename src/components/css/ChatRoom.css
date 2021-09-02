@@ -28,3 +28,23 @@ h1 {
   margin-right: 30%;
   height: 100%;
 }
+
+.msg-container {
+  display:flex
+}
+
+.message-list .msg-container{
+  display:flex;
+}
+
+
+.msg-timestamp,
+.msg-username,
+.msg-message {
+  padding: 5px
+}
+
+.msg-timestamp {
+  font-size: x-small;
+  padding-top: 10px;
+}

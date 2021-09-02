@@ -60,7 +60,11 @@ const ChatRoom = ({location}) => {
           {messages.map((msg, index)=> {
             if (!msg.message) return null;
             else return (
-              <div key={`${msg.timestamp}${index}`}>{moment(msg.timestamp).format("hh:mm:ss")} {msg.username}{':'} {msg.message}</div>
+              <div className="msg-container" key={`${msg.timestamp}${index}`}>
+                <div className="msg-timestamp">{moment(msg.timestamp).format("hh:mm")}</div>
+                <div className="msg-username">{msg.username}{':'}</div>
+                <div className="msg-message">{msg.message}</div>
+              </div>
             )
           })}
         </div>
