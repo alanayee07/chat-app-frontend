@@ -24,27 +24,35 @@ h1 {
 }
 
 .message-list {
+  display: flex;
+  flex-direction: column;
   margin-left: 30%;
   margin-right: 30%;
   height: 100%;
 }
 
-.msg-container {
-  display:flex
+.msg-container,
+.msg-list,
+.msg-container,
+.msg-container-self {
+  display: flex
 }
-
-.message-list .msg-container{
-  display:flex;
-}
-
 
 .msg-timestamp,
 .msg-username,
-.msg-message {
+.msg-message,
+.msg-timestamp-self,
+.msg-username-self,
+.msg-message-self {
   padding: 5px
 }
 
-.msg-timestamp {
+.msg-timestamp,
+.msg-timestamp-self {
   font-size: x-small;
   padding-top: 10px;
+}
+
+.msg-container-self {
+  justify-content: flex-end;
 }

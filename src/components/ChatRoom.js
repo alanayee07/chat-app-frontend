@@ -3,6 +3,7 @@ import SocketIo from '../socket.io.client/index.js';
 import JoinRoom from './JoinRoom';
 import queryString from 'query-string';
 import moment from 'moment';
+// import OnlineUsers from './OnlineUsers';
 // import {createNewMessage} from './utilities';
 
 import './css/ChatRoom.css';
@@ -13,7 +14,7 @@ const ChatRoom = ({location}) => {
   const [roomName, setRoomName] = useState('');
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
-
+  // const [users, setUsers] = useState({});
 
 
 
@@ -23,10 +24,17 @@ const ChatRoom = ({location}) => {
     setRoomName(roomName);
     setUsername(username);
 
-    SocketIo.emit('join', {username, roomName}, () => {
+    SocketIo.emit('join', {userId: SocketIo.id, room: roomName, username: username});
 
-    });
-  }, [location.search])
+  }, [location.search]);
+
+  // useEffect(() => {
+  //   SocketIo.on('join', userByRoomMap => {
+  //     console.log(userByRoomMap);
+  //     // SocketIo.emit('message', userByRoomMap);
+  //   })
+  // });
+
 
   useEffect(() => {
     SocketIo.on('message', msg => {
@@ -39,6 +47,7 @@ const ChatRoom = ({location}) => {
 
     setMessages([]);
   }, [roomName, username]);
+
 
   const sendMessage = e => {
     e.preventDefault();
@@ -55,10 +64,18 @@ const ChatRoom = ({location}) => {
   return (
     <div className="chatRoom-container">
       <h1 className="room-header">Room: {roomName}</h1>
+      {/* <OnlineUsers /> */}
       <div className="message-container">
         <div className="message-list">
-          {messages.map((msg, index)=> {
+          {messages.map((msg, index) => {
             if (!msg.message) return null;
+            else if (msg.id === SocketIo.id) return (
+              <div className="msg-container-self" key={`${msg.timestamp}${index}`}>
+                <div className="msg-timestamp-self">{moment(msg.timestamp).format("hh:mm")}</div>
+                <div className="msg-username-self">{msg.username}{':'}</div>
+                <div className="msg-message-self">{msg.message}</div>
+              </div>
+            )
             else return (
               <div className="msg-container" key={`${msg.timestamp}${index}`}>
                 <div className="msg-timestamp">{moment(msg.timestamp).format("hh:mm")}</div>
