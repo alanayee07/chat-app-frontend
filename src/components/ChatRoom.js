@@ -87,7 +87,7 @@ const ChatRoom = ({location}) => {
             return (
             <div className={`msg-container${chatMsgClassName}`} key={`${msg.timestamp}${index}`}>
               <div className={`msg-timestamp${chatMsgClassName}`}>{moment(msg.timestamp).format("hh:mm")}</div>
-              <div className={`msg-username${chatMsgClassName}`}>{msg.username}{':'}</div>
+              {(msg.id !== SocketIo.id) && !msg.isChatBot &&  <div className={`msg-username${chatMsgClassName}`}>{msg.username}{':'}</div>}
               <div className={`msg-message${chatMsgClassName}`}>{msg.message}</div>
             </div>
           )
