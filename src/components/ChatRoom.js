@@ -20,8 +20,8 @@ const ChatRoom = ({location}) => {
   const [onlineUsers, setOnlineUsers] = useState({});
 
   useEffect(() => {
-    SocketIo.on('join', userByRoomMap => {
-      setOnlineUsers({...onlineUsers,userByRoomMap});
+    SocketIo.on('join', userMap => {
+      setOnlineUsers({...onlineUsers, userMap});
     })
   }, [onlineUsers]);
 
@@ -81,8 +81,14 @@ const ChatRoom = ({location}) => {
             else if (msg.id === SocketIo.id) return (
               <div className="msg-container-self" key={`${msg.timestamp}${index}`}>
                 <div className="msg-timestamp-self">{moment(msg.timestamp).format("hh:mm")}</div>
-                <div className="msg-username-self">{msg.username}{':'}</div>
+                {/* <div className="msg-username-self">{msg.username}{':'}</div> */}
                 <div className="msg-message-self">{msg.message}</div>
+              </div>
+            )
+            else if (msg.id !== SocketIo.id && (msg.isChatbot === true)) return (
+              <div className="msg-container" key={`${msg.timestamp}${index}`}>
+                <div className="msg-timestamp">{moment(msg.timestamp).format("hh:mm")}</div>
+                <div className="msg-message">{msg.message}</div>
               </div>
             )
             else return (
