@@ -77,27 +77,34 @@ const ChatRoom = ({location}) => {
         <h5 className="room-header">Room: {roomName}</h5>
         <div className="message-list">
           {messages.map((msg, index) => {
-            if (!msg.message) return null;
-            else if (msg.id === SocketIo.id) return (
-              <div className="msg-container-self" key={`${msg.timestamp}${index}`}>
-                <div className="msg-timestamp-self">{moment(msg.timestamp).format("hh:mm")}</div>
-                {/* <div className="msg-username-self">{msg.username}{':'}</div> */}
-                <div className="msg-message-self">{msg.message}</div>
-              </div>
-            )
-            else if (msg.id !== SocketIo.id && (msg.isChatbot === true)) return (
-              <div className="msg-container" key={`${msg.timestamp}${index}`}>
-                <div className="msg-timestamp">{moment(msg.timestamp).format("hh:mm")}</div>
-                <div className="msg-message">{msg.message}</div>
-              </div>
-            )
-            else return (
-              <div className="msg-container" key={`${msg.timestamp}${index}`}>
-                <div className="msg-timestamp">{moment(msg.timestamp).format("hh:mm")}</div>
-                <div className="msg-username">{msg.username}{':'}</div>
-                <div className="msg-message">{msg.message}</div>
-              </div>
-            )
+            let chatMsgClassName = '';
+            if (!msg.message) {
+              return null;
+            }
+            if (msg.id === SocketIo.id) {
+              chatMsgClassName = '-self';
+            }
+            return (
+            <div className={`msg-container${chatMsgClassName}`} key={`${msg.timestamp}${index}`}>
+              <div className={`msg-timestamp${chatMsgClassName}`}>{moment(msg.timestamp).format("hh:mm")}</div>
+              <div className={`msg-username${chatMsgClassName}`}>{msg.username}{':'}</div>
+              <div className={`msg-message${chatMsgClassName}`}>{msg.message}</div>
+            </div>
+          )
+            // else if (msg.id === SocketIo.id) return (
+              // <div className="msg-container-self" key={`${msg.timestamp}${index}`}>
+              //   <div className="msg-timestamp-self">{moment(msg.timestamp).format("hh:mm")}</div>
+              //   {/* <div className="msg-username-self">{msg.username}{':'}</div> */}
+              //   <div className="msg-message-self">{msg.message}</div>
+              // </div>
+            // )
+            // else return (
+            //   <div className="msg-container" key={`${msg.timestamp}${index}`}>
+            //     <div className="msg-timestamp">{moment(msg.timestamp).format("hh:mm")}</div>
+            //     <div className="msg-username">{msg.username}{':'}</div>
+            //     <div className="msg-message">{msg.message}</div>
+            //   </div>
+            // )
           })}
         </div>
       </div>
