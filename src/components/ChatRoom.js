@@ -4,7 +4,6 @@ import JoinRoom from './JoinRoom';
 import queryString from 'query-string';
 import moment from 'moment';
 import OnlineUsers from './OnlineUsers'
-// import {createNewMessage} from './utilities';
 
 import './css/ChatRoom.css';
 
@@ -14,7 +13,6 @@ const ChatRoom = ({location}) => {
   const [roomName, setRoomName] = useState('');
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
-  // const [users, setUsers] = useState({});
 
 
   const [onlineUsers, setOnlineUsers] = useState({});
@@ -36,14 +34,6 @@ const ChatRoom = ({location}) => {
     SocketIo.emit('join', {userId: SocketIo.id, room: roomName, username: username});
 
   }, [location.search]);
-
-  // useEffect(() => {
-  //   SocketIo.on('join', userByRoomMap => {
-  //     console.log('this is the userByRoomMap!!!!', userByRoomMap);
-  //     // SocketIo.emit('message', userByRoomMap);
-  //   })
-  // }, []);
-
 
   useEffect(() => {
     SocketIo.on('message', msg => {
@@ -85,26 +75,12 @@ const ChatRoom = ({location}) => {
               chatMsgClassName = '-self';
             }
             return (
-            <div className={`msg-container${chatMsgClassName}`} key={`${msg.timestamp}${index}`}>
+              <div className={`msg-container${chatMsgClassName}`} key={`${msg.timestamp}${index}`}>
               <div className={`msg-timestamp${chatMsgClassName}`}>{moment(msg.timestamp).format("hh:mm")}</div>
               {(msg.id !== SocketIo.id) && !msg.isChatBot &&  <div className={`msg-username${chatMsgClassName}`}>{msg.username}{':'}</div>}
               <div className={`msg-message${chatMsgClassName}`}>{msg.message}</div>
             </div>
-          )
-            // else if (msg.id === SocketIo.id) return (
-              // <div className="msg-container-self" key={`${msg.timestamp}${index}`}>
-              //   <div className="msg-timestamp-self">{moment(msg.timestamp).format("hh:mm")}</div>
-              //   {/* <div className="msg-username-self">{msg.username}{':'}</div> */}
-              //   <div className="msg-message-self">{msg.message}</div>
-              // </div>
-            // )
-            // else return (
-            //   <div className="msg-container" key={`${msg.timestamp}${index}`}>
-            //     <div className="msg-timestamp">{moment(msg.timestamp).format("hh:mm")}</div>
-            //     <div className="msg-username">{msg.username}{':'}</div>
-            //     <div className="msg-message">{msg.message}</div>
-            //   </div>
-            // )
+            )
           })}
         </div>
       </div>
