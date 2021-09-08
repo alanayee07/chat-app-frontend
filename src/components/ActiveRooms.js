@@ -1,5 +1,7 @@
 import React from 'react'
 
+import './css/ActiveRooms.css'
+
 const ActiveRooms = (activeRooms) => {
 
   let rooms;
@@ -18,8 +20,13 @@ const ActiveRooms = (activeRooms) => {
 
 
   return (
-    <div>
-      {console.log(rooms)}
+    <div className="activeRooms-container">
+      <div className="activeRooms-list">
+        {rooms.map(room => (
+          <div>{room}</div>
+        ))}
+
+      </div>
     </div>
   )
 }
