@@ -13,8 +13,6 @@ const ChatRoom = ({location}) => {
   const [roomName, setRoomName] = useState('');
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
-
-
   const [onlineUsers, setOnlineUsers] = useState({});
 
   useEffect(() => {
@@ -67,6 +65,7 @@ const ChatRoom = ({location}) => {
         <JoinRoom username={username} />
       </div>
       <div className="chatRoom-inner">
+        <OnlineUsers onlineUsers={onlineUsers}/>
         <div className="message-container">
           <div className="message-list">
             {messages.map((msg, index) => {
@@ -101,7 +100,6 @@ const ChatRoom = ({location}) => {
             </div>
           </div>
         </div>
-        <OnlineUsers onlineUsers={onlineUsers}/>
       </div>
     </div>
   )

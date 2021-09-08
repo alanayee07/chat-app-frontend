@@ -15,7 +15,7 @@ h1 {
 
 .chatRoom-inner {
   display: flex;
-  flex-direction: column;
+  flex-direction: row-reverse;
 }
 
 .message-container {

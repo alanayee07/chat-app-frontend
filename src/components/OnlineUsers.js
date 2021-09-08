@@ -7,7 +7,7 @@ const OnlineUsers = (onlineUsers) => {
   const usernames = [];
 
   const getEachOnlineUser = (onlineUsers) => {
-    console.log('this is the onlineObj', onlineUsers.onlineUsers)
+    // console.log('this is the onlineObj', onlineUsers.onlineUsers)
 
     for (let user in onlineUsers.onlineUsers) {
       usernames.push(onlineUsers.onlineUsers[user]);
