@@ -4,6 +4,7 @@ import JoinRoom from './JoinRoom';
 import queryString from 'query-string';
 import moment from 'moment';
 import OnlineUsers from './OnlineUsers'
+import ActiveRooms from './ActiveRooms'
 
 import './css/ChatRoom.css';
 
@@ -14,10 +15,15 @@ const ChatRoom = ({location}) => {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
   const [onlineUsers, setOnlineUsers] = useState({});
+  const [activeRooms, setActiveRooms] = useState({});
 
   useEffect(() => {
-    SocketIo.on('join', userMap => {
+    SocketIo.on('join', (userMap, usersByRoomMap) => {
+      console.log('this is brought to client by server: ', userMap);
+      console.log('this is brought to client by server: ', usersByRoomMap);
+
       setOnlineUsers(userMap);
+      setActiveRooms(usersByRoomMap);
     })
   }, []);
 
@@ -98,6 +104,7 @@ const ChatRoom = ({location}) => {
             </div>
           </div>
         </div>
+        <ActiveRooms activeRooms={activeRooms}/>
       </div>
     </div>
   )
