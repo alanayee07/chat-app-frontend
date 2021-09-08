@@ -19,9 +19,7 @@ const ChatRoom = ({location}) => {
     SocketIo.on('join', userMap => {
       setOnlineUsers(userMap);
     })
-  }, [onlineUsers]);
-
-
+  }, []);
 
   useEffect(() => {
     const {username, roomName} = queryString.parse(location.search);
