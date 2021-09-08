@@ -9,6 +9,13 @@ h1 {
   align-items: center;
   height: 100vh;
   background-color: black;
+  padding-top: 100px;
+  margin-top: 10px;
+}
+
+.chatRoom-inner {
+  display: flex;
+  flex-direction: column;
 }
 
 .message-container {
@@ -18,8 +25,8 @@ h1 {
   background: #2c2f33;
   color: white;
   border-radius: 8px;
-  height: 60%;
-  width: 80%;
+  height: 500px;
+  width: 500px;
   padding-left: 15px;
 }
 
@@ -55,4 +62,8 @@ h1 {
 
 .msg-container-self {
   justify-content: flex-end;
+}
+
+.room-header {
+  color: white;
 }

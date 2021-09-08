@@ -1,0 +1,9 @@
+.onlineUsers-container {
+  display: flex;
+  color: white;
+}
+
+.onlineUsers-list {
+  display: flex;
+  flex-direction: column;
+}
