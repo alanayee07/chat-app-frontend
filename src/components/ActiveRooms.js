@@ -21,6 +21,7 @@ const ActiveRooms = (activeRooms) => {
 
   return (
     <div className="activeRooms-container">
+      <h3 className="activeRooms-header">Chat Rooms</h3>
       <div className="activeRooms-list">
         {rooms.map(room => (
           <div>{room}</div>

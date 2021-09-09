@@ -1,9 +1,19 @@
-.onlineUsers-container {
+.onlineUsers-container,
+.activeRooms-container {
   display: flex;
+  flex-direction: column;
   color: white;
+  width: 20vh;
+  margin-top: 10px;
+  align-items: center
 }
 
 .onlineUsers-list {
   display: flex;
   flex-direction: column;
+}
+
+.onlineUsers-header {
+  display: flex;
+
 }

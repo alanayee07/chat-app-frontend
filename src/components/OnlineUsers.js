@@ -18,6 +18,7 @@ const OnlineUsers = (onlineUsers) => {
 
   return (
     <div className="onlineUsers-container">
+      <h3 className="onlineUsers-header">Online Friends</h3>
       <div className="onlineUsers-list">
         {usernames.map((user, index) => {
           return (
