@@ -25,7 +25,7 @@ const ActiveRooms = (activeRooms) => {
       <h3 className="activeRooms-header">Chat Rooms</h3>
       <div className="activeRooms-list">
         {rooms.map(room => (
-          <div key={shortid.generate()}>{room}</div>
+          <div className={`activeRooms-${room}`} key={shortid.generate()}>{room}</div>
         ))}
 
       </div>
