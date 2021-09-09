@@ -1,4 +1,5 @@
 import React from 'react'
+import shortid from 'shortid'
 
 import './css/ActiveRooms.css'
 
@@ -24,7 +25,7 @@ const ActiveRooms = (activeRooms) => {
       <h3 className="activeRooms-header">Chat Rooms</h3>
       <div className="activeRooms-list">
         {rooms.map(room => (
-          <div>{room}</div>
+          <div key={shortid.generate()}>{room}</div>
         ))}
 
       </div>
