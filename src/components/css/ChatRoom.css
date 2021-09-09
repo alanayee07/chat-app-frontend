@@ -2,9 +2,14 @@ h1 {
   color: white;
 }
 
+*:focus {
+  outline: none;
+}
+
 input {
-  border-style: inherit;
+  border-style: none;
   color: #F6F6F6;
+
 }
 
 button {
