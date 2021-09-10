@@ -40,9 +40,12 @@ const ChatRoom = ({location}) => {
 
   useEffect(() => {
     SocketIo.on('message', msg => {
-      setMessages([...messages, msg]);
+      setMessages((prevMsg) => {
+        return [...prevMsg, msg]
+      });
     })
-  }, [messages]);
+  }, [SocketIo]);
+
 
   useEffect(() => {
     SocketIo.emit('message', {userId: SocketIo.id, room: roomName, username: username})
