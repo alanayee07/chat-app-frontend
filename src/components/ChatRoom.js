@@ -28,6 +28,8 @@ const ChatRoom = ({location}) => {
     })
   }, []);
 
+  console.log('this is the active rooms: ', activeRooms)
+
   useEffect(() => {
     const {username, roomName} = queryString.parse(location.search);
 
@@ -73,7 +75,7 @@ const ChatRoom = ({location}) => {
         <JoinRoom username={username} />
       </div>
       <div className="chatRoom-inner">
-        <OnlineUsers onlineUsers={onlineUsers} />
+        <OnlineUsers onlineUsers={onlineUsers} activeRooms={activeRooms}/>
         <div className="message-container">
           <div className="message-list">
             {messages.map((msg, index) => {

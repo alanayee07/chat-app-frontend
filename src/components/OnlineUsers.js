@@ -3,20 +3,20 @@ import shortid from 'shortid'
 
 import './css/OnlineUsers.css'
 
-const OnlineUsers = (onlineUsers) => {
+const OnlineUsers = (props) => {
 
   const usernames = [];
 
   const getEachOnlineUser = (onlineUsers) => {
     // console.log('this is the onlineObj', onlineUsers.onlineUsers)
 
-    for (let id in onlineUsers.onlineUsers) {
-      usernames.push(onlineUsers.onlineUsers[id]);
+    for (let id in props.onlineUsers) {
+      usernames.push(props.onlineUsers[id]);
     }
     return usernames;
   }
 
-  getEachOnlineUser(onlineUsers)
+  getEachOnlineUser(props.onlineUsers)
 
   return (
     <div className="onlineUsers-container">
