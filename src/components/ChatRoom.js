@@ -44,7 +44,7 @@ const ChatRoom = ({location}) => {
         return [...prevMsg, msg]
       });
     })
-  }, [SocketIo]);
+  }, []);
 
 
   useEffect(() => {
