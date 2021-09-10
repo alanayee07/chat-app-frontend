@@ -17,10 +17,11 @@ const ChatRoom = ({location}) => {
   const [onlineUsers, setOnlineUsers] = useState({});
   const [activeRooms, setActiveRooms] = useState({});
 
+
   useEffect(() => {
     SocketIo.on('join', (userMap, usersByRoomMap) => {
-      console.log('this is brought to client by server: ', userMap);
-      console.log('this is brought to client by server: ', usersByRoomMap);
+      // console.log('this is brought to client by server: ', userMap);
+      // console.log('this is brought to client by server: ', usersByRoomMap);
 
       setOnlineUsers(userMap);
       setActiveRooms(usersByRoomMap);
@@ -69,7 +70,7 @@ const ChatRoom = ({location}) => {
         <JoinRoom username={username} />
       </div>
       <div className="chatRoom-inner">
-        <OnlineUsers onlineUsers={onlineUsers}/>
+        <OnlineUsers onlineUsers={onlineUsers} />
         <div className="message-container">
           <div className="message-list">
             {messages.map((msg, index) => {

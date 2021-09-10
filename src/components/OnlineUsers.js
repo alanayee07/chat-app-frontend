@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import shortid from 'shortid'
 
 import './css/OnlineUsers.css'
 
@@ -14,6 +15,7 @@ const OnlineUsers = (onlineUsers) => {
     }
     return usernames;
   }
+
   getEachOnlineUser(onlineUsers)
 
   return (
@@ -22,7 +24,7 @@ const OnlineUsers = (onlineUsers) => {
       <div className="onlineUsers-list">
         {usernames.map((user, index) => {
           return (
-            <div key={`${user}${index}`}>{user}</div>
+            <div key={shortid.generate()}>{user}</div>
           )
         })}
       </div>

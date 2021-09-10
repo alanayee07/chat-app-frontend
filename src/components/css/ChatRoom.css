@@ -19,6 +19,7 @@ button {
   border-left: none;
   border-top: none;
   border-radius: 5%;
+  height: 100%;
 }
 
 .room-header {
