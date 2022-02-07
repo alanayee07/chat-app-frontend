@@ -39,6 +39,8 @@ button {
   background-color: black;
   margin-top: 10px;
   font-family: 'Source Sans Pro', sans-serif;
+  overflow: hidden;
+  position: relative;
 }
 
 .chatRoom-inner {
