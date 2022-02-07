@@ -1,6 +1,6 @@
 import React from 'react';
 // import io from 'socket.io-client';
-import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {HashRouter as Router, Switch, Route } from 'react-router-dom';
 // import JoinRoom from  './components/JoinRoom'
 import Login from './components/Login';
 import ChatRoom from './components/ChatRoom'
